@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../build/react.js"></script>
+		<script src="../build/react-dom.js"></script>
+		<script src="../build/browser.js"></script>
+		<script src="../build/pubsub.js"></script>
+	</head>
+	<body>
+		<div id="example"></div>
+		<script type="text/babel" >
+			var MyFunction = React.createClass({
+				clickonfocus:function(){
+					this.refs.myTextInput.focus();
+				},
+				render:function(){
+					return(
+						<div>
+							<input type="text" ref = "myTextInput" />
+							<input type="button" value="Focus the text input" onClick = {this.clickonfocus} />
+						</div>
+					);
+				}
+			});
+			ReactDOM.render(
+				<MyFunction />,
+				document.getElementById('example')
+			);
+
+		</script>
+	</body>
+</html>
