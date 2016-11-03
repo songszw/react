@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="../build/react.js"></script>
+	<script src="../build/react-dom.js"></script>
+	<script src="../build/browser.js"></script>
+	<script src="../build/pubsub.js"></script>
+</head>
+<body>
+	<div id="example"></div>
+	<script type="text/babel">
+		var userItemData = [
+			{	
+				id:1,
+				name:"song",
+				gender:"men"
+			},
+			{
+				id:2,
+				name:"zhi",
+				gender:"men"
+			},
+			{
+				id:3,
+				name:"wen",
+				gender:"men"
+			},
+			{
+				id:4,
+				name:"lily",
+				gender:"women"
+			}
+		]
+		var UserItem = React.createClass({
+			render:function(){
+				return	<tr>
+							<td>{this.props.sue.name}</td>
+							<td>{this.props.sue.gender}</td>
+						</tr>
+			}
+		})
+		var UserList = React.createClass({
+			render:function(){
+				return  <table>
+							<thead>
+								<tr>
+									<td>name</td>
+									<td>gender</td>
+								</tr>
+							</thead>
+							<tbody>
+							{
+								userItemData.map(function(user){
+									return <UserItem sue = {user} key={user.id}/>
+								})
+								
+							}
+							</tbody>
+						</table>
+			}
+		});
+		ReactDOM.render(
+			<UserList />,
+			document.getElementById('example')
+		)
+	</script>
+</body>
+</html>

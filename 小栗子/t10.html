@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="../build/react.js"></script>
+	<script src="../build/react-dom.js"></script>
+	<script src="../build/browser.js"></script>
+	<script src="../build/pubsub.js"></script>
+	<style>
+		table{
+			border-collapse: collapse;
+			border: 1px solid #ccc;
+			width: 800px;
+			margin: 20px auto;
+		}
+		th,td{
+			border:1px solid #000;
+		}
+		.active{
+			background: skyblue;
+		}
+	</style>
+</head>
+<body>
+	<div id="example"></div>
+	<script type="text/babel">
+		var userItemData = [
+			{	
+				id:1,
+				name:"song",
+				gender:"men"
+			},
+			{
+				id:2,
+				name:"zhi",
+				gender:"men"
+			},
+			{
+				id:3,
+				name:"wen",
+				gender:"men"
+			},
+			{
+				id:4,
+				name:"lily",
+				gender:"women"
+			}
+		]
+		var UserItem = React.createClass({
+			getInitialState(){
+				return{
+					isActive:false
+				}
+			},
+			toggle:function(e){
+				this.setState({
+					isActive:e.target.checked
+				})
+				console.log(this.state.isActive)
+			},
+			render:function(){
+				return	<tr className = {this.state.isActive? "active" : ""}>
+							<td>{this.props.sue.name}</td>
+							<td>{this.props.sue.gender}</td>
+							<td><input type="checkbox" onClick={this.toggle}/></td>
+						</tr>
+			}
+		})
+		var UserList = React.createClass({
+			render:function(){
+				return  <table>
+							<thead>
+								<tr>
+									<td>name</td>
+									<td>gender</td>
+									<td>checked</td>
+								</tr>
+							</thead>
+							<tbody>
+							{
+								userItemData.map(function(user){
+									return <UserItem sue = {user} key={user.id}/>
+								})
+								
+							}
+							</tbody>
+						</table>
+			}
+		});
+		ReactDOM.render(
+			<UserList />,
+			document.getElementById('example')
+		)
+	</script>
+</body>
+</html>

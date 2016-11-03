@@ -14,7 +14,7 @@
 				<thead>
 					<tr>
 						<td>name</td>
-						<td>sex</td>
+						<td>gender</td>
 					</tr>
 				</thead>
 				<tbody>
@@ -30,33 +30,56 @@
 			</table> -->
 		</div>
 		<script type="text/babel" >
-			var UserListItem = React.createClass({
+			var UserData = [
+				{
+					name:"song",
+					gender:"man"
+				},
+				{
+					name:"lily",
+					gender:"women"
+				},
+				{
+					name:"jet",
+					gender:"man"
+				},
+				{
+					name:"zhao",
+					gender:"women"
+				}
+			];
+			var UserItem = React.createClass({
 				render:function(){
-					return	<tr>
-								<td>jet</td>
-								<td>man</td>
+					return  <tr>
+								<td>{this.props.user.name}</td>
+								<td>{this.props.user.gender}</td>
 							</tr>
 				}
 			});
-			var UserList = React.createClass({
+			var UserLiset = React.createClass({
 				render:function(){
-					return <div>
-						<table>
-							<thead>
-								<tr>
-									<td>name:</td>
-									<td>sex:</td>
-								</tr>
-							</thead>
-							<tbody>
-								<UserListItem />
-							</tbody>
-						</table>
-					</div>
+					return <table>
+								<thead>
+									<tr>
+										<td>name</td>
+										<td>gender</td>
+									</tr>
+								</thead>
+								<tbody>
+									{
+										UserData.map(function(user){
+											return <UserItem user={user}/>
+										})
+
+									}
+
+									
+								</tbody>
+							</table>
 				}
 			});
 			ReactDOM.render(
-				<UserList />,
+				<UserLiset />,
 				document.getElementById('example')
 			);
 		</script>
