@@ -3,16 +3,35 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Document</title>
+	<script src="jquery-1.11.0.js"></script>
 </head>
 <body>
-<script>
-	var x=2;
-	Function test() {
-		This.x = 1;
-	}
-	Var o = new test();
-	alert( x)
-</script>
+<div class="div1">dskfkd</div>
+	<script>
+		$(function(){
+			var onoff = true;
+			function Cli(){
+				var time = null;
+				var i = 20;
+				onoff = false;
+				time=setInterval(function(){
+					i--;
+					$('.div1').html(i+"s后再次发送");
+				if(i==0){
+					clearInterval(time);
+					onoff = true;
+					$('.div1').html("获取验证码");
+				}
+				},1000)
+			};
+			$('.div1').click(function(){
+				if(onoff){
+					Cli();
+				}
+			})
+		})
+
+	</script>
 	
 </body>
 </html>
