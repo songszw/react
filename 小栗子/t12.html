@@ -25,66 +25,73 @@
 	<body>
 	<div id="example"></div>
 	<script type="text/babel">
-		var userData = [
-			{
-				name:"song",
-				gender:'men',
-				id:1
-			},
-			{
-				name:"zhi",
-				gender:'women',
-				id:2
-			},
-			{
-				name:"wen",
-				gender:'men',
-				id:3
+	var data = [
+		{
+			name:"lily",
+			gender:"women",
+			id:1
+		},
+		{
+			name:"song",
+			gender:"men",
+			id:2
+		},
+		{
+			name:"zhao",
+			gender:"women",
+			id:3
+		},
+		{
+			name:"jet",
+			gender:"men",
+			id:4
+		}
+	]
+	var UserItem = React.createClass({
+		getInitialState:function(){
+			return{
+				isActive:false
 			}
-		];
-		var UserItem = React.createClass({
-			getInitialState:function(){
-				return{
-					isActive:false
-				}
-			},
-			toggle:function(e){
-				this.setState({
-					isActive:e.target.checked
-				})
-			},
-			render:function(){
-				return 	<tr className={this.state.isActive? "active":""}>
-							<td>{this.props.user.name}</td>
-							<td>{this.props.user.gender}</td>
-							<td><input type="checkbox" onClick={this.toggle} /></td>
-						</tr>
-			}
-		});
-		var UserList = React.createClass({
-			render:function(){
-				return	<table>
-							<thead>
-								<tr>
-									<td>name</td>
-									<td>gender</td>
-									<td>check</td>
-								</tr>
-							</thead>
-							<tbody>
-								{
-									userData.map(function(user){
-										return <UserItem user={user} key={user.id} />
-									})
-								}
-							</tbody>
-						</table>
-			}
-		});
-		ReactDOM.render(
-			<UserList/>,
-			document.getElementById('example')
-		)
+		},
+		toggle:function(e){
+			this.setState({
+				isActive:e.target.checked
+			})
+		},
+		render:function(){
+			return	<tr className={this.state.isActive?"active":""}>
+						<td>{this.props.user.name}</td>
+						<td>{this.props.user.gender}</td>
+						<td><input type="checkbox" onClick={this.toggle}/></td>
+					</tr>
+		}
+	})
+	var UserList = React.createClass({
+		render:function(){
+			return	<table>
+						<thead>
+							<tr>
+								<td>name</td>
+								<td>gender</td>
+								<td>click</td>
+							</tr>
+						</thead>
+						<tbody>
+						{
+							data.map(function(data){
+								return <UserItem user={data} key={data.id}/>
+							})
+						}
+						</tbody>
+					</table>
+		}
+	});
+
+	ReactDOM.render(
+		<UserList />,
+		document.getElementById('example')
+	)
+		
 	</script>
 		
 	</body>
